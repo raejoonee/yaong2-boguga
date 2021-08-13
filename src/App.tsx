@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { createGlobalStyle } from 'styled-components';
-import DarkMode from './components/DarkMode';
+import DarkMode from './components/organisms/DarkMode';
 import ColorContext, { ThemeProps } from './contexts/theme';
 
 const GlobalStyle = createGlobalStyle<ThemeProps>`

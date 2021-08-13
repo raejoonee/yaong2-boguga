@@ -37,7 +37,6 @@ const ThemeProvider = ({
   );
 };
 
-export type { ThemeProps };
 export { ThemeProvider };
-
+export type { ThemeProps };
 export default ThemeContext;

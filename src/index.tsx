@@ -1,11 +1,15 @@
-import ReactDOM from 'react-dom';
 import './index.scss';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 import App from './App';
 import { ThemeProvider } from './contexts/theme';
 
 ReactDOM.render(
-  <ThemeProvider>
-    <App />
-  </ThemeProvider>,
+  <Provider store={store}>
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  </Provider>,
   document.getElementById('root'),
 );

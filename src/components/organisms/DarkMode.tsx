@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import ColorContext, { ThemeProps } from '../contexts/theme';
+import ColorContext, { ThemeProps } from '../../contexts/theme';
 
 const Section = styled.div<ThemeProps>`
   position: fixed;
@@ -22,7 +22,7 @@ const Section = styled.div<ThemeProps>`
   }
 `;
 
-const DarkMode: React.FC = () => {
+const DarkMode = () => {
   const { isLightTheme, toggleIsLightTheme } = useContext(ColorContext);
   return (
     <Section
