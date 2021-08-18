@@ -1,18 +1,18 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useState, createContext, useCallback } from 'react';
 
 interface ThemeProps {
-  mode: boolean;
+  mode: string;
 }
 
 interface ThemeContextResult {
-  isLightTheme: boolean;
-  toggleIsLightTheme: () => void;
+  isLightTheme: string;
+  toggleLightTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextResult>({
-  isLightTheme: true,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  toggleIsLightTheme: () => {},
+  isLightTheme: 'light',
+  toggleLightTheme: () => {},
 });
 
 const ThemeProvider = ({
@@ -20,16 +20,22 @@ const ThemeProvider = ({
 }: {
   children: React.ReactNode;
 }): JSX.Element => {
-  const [isLightTheme, setisLightTheme] = useState<boolean>(
+  const [isLightTheme, setIsLightTheme] = useState<string>(
     localStorage.getItem('isLightTheme') === 'true' ||
-      window.matchMedia('(prefers-color-scheme: light)').matches,
+      window.matchMedia('(prefers-color-scheme: light)').matches
+      ? 'light'
+      : 'dark',
   );
 
   const value: ThemeContextResult = {
     isLightTheme,
-    toggleIsLightTheme: useCallback(() => {
-      setisLightTheme(!isLightTheme);
-    }, [isLightTheme]),
+    toggleLightTheme: useCallback(
+      () =>
+        isLightTheme === 'light'
+          ? setIsLightTheme('dark')
+          : setIsLightTheme('light'),
+      [isLightTheme],
+    ),
   };
 
   return (
@@ -37,7 +43,6 @@ const ThemeProvider = ({
   );
 };
 
-export type { ThemeProps };
 export { ThemeProvider };
-
+export type { ThemeProps };
 export default ThemeContext;

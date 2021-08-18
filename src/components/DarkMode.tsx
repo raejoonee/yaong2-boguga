@@ -26,7 +26,7 @@ const DarkMode: React.FC = () => {
   const { isLightTheme, toggleIsLightTheme } = useContext(ColorContext);
   return (
     <Section
-      mode={isLightTheme}
+      mode={isLightTheme.toString()}
       className="dark-mode-section"
       onClick={() => {
         toggleIsLightTheme();
