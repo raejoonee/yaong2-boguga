@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import mount from '../../styles/mount';
-import Button from '../atoms/Button';
-import Datalist from '../../features/breed/Breed';
-import Input from '../atoms/Input';
+import mount from '../styles/mount';
+import Button from './atoms/Button';
+import Breed from '../features/breed/Breed';
+import Input from './atoms/Input';
 
 const Section = styled.section`
   text-align: center;
@@ -16,7 +16,7 @@ const SearchSection = () => {
   return (
     <Section>
       <Input type="text" list="cat-list" placeholder="Pick a breed" />
-      <Datalist />
+      <Breed />
       <Button text="검색" onClick={onClick} />
     </Section>
   );

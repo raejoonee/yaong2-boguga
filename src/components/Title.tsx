@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import mount from '../../styles/mount';
+import mount from '../styles/mount';
 
 const Header = styled.header`
   @font-face {
