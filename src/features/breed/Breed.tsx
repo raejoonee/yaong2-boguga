@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
-const Datalist = () => {
+const Breed = () => {
   const breeds = useSelector((state: RootState) => state.breed.breeds);
   return (
     <datalist id="cat-list">
@@ -12,4 +12,4 @@ const Datalist = () => {
   );
 };
 
-export default Datalist;
+export default Breed;
