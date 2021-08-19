@@ -1,4 +1,5 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import ApiError from '../error/APIError';
 
 const API_ENDPOINT = 'https://api.thecatapi.com/v1';
@@ -10,6 +11,9 @@ const request = async (url: string) => {
     const response = await axios.get(url);
     return response.data;
   } catch (e) {
+    toast.error(ERROR_MESSAGE, {
+      id: 'serverError',
+    });
     throw new ApiError(ERROR_MESSAGE, 'API Error', 500);
   }
 };
