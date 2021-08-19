@@ -20,12 +20,18 @@ function App() {
   );
   const dispatch = useDispatch();
   useEffect(() => {
+    if (!breeds.length) {
     api.getBreeds().then((data) => {
       data.forEach((breed: BreedProps) => {
-        dispatch(breedActions.push(breed.name));
+          const payload = {
+            breed: breed.name.toLowerCase(),
+            id: breed.id,
+          };
+          dispatch(breedActions.push(payload));
       });
       dispatch(loaderActions.finishLoading());
     });
+    }
   }, []);
   return (
     <>
