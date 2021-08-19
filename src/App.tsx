@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 import ColorContext from './contexts/Theme';
 import GlobalStyle from './styles/GlobalStyle';
 import { RootState } from './store';
@@ -34,6 +35,18 @@ function App() {
       {initialLoading || <SearchSection />}
       <DarkMode />
       <Loader />
+      <Toaster
+        position="bottom-left"
+        reverseOrder={false}
+        toastOptions={{
+          duration: 2000,
+          style: {
+            background: '#db706c',
+            color: '#f2f2f2',
+            cursor: 'pointer',
+          },
+        }}
+      />
     </>
   );
 }
