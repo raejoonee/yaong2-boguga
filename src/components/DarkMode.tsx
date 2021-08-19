@@ -17,6 +17,8 @@ const Section = styled.div<ThemeProps>`
   cursor: pointer;
   transition: 0.5s;
   user-select: none;
+  z-index: 99;
+  background: ${(props) => (props.mode === 'light' ? '#fff' : '#333')};
   &:hover {
     background: ${(props) => (props.mode === 'light' ? '#333' : '#f2f2f2')};
     color: ${(props) => (props.mode === 'light' ? '#f2f2f2' : '#333')};
