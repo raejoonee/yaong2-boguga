@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
 const Breed = () => {
-  const breeds = useSelector((state: RootState) => state.breed.breeds);
+  const { breedInfo } = useSelector((state: RootState) => state.breed);
   const convertUppercase = (str: string) => {
     const splited = str.toLowerCase().split(' ');
     const converted: string[] = [];
@@ -13,8 +13,8 @@ const Breed = () => {
   };
   return (
     <datalist id="cat-list">
-      {breeds.map((breed) => (
-        <option key={breed} value={convertUppercase(breed)} />
+      {breedInfo.map((breed) => (
+        <option key={breed.id} value={breed.name} />
       ))}
     </datalist>
   );

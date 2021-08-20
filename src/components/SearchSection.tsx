@@ -18,26 +18,25 @@ const Section = styled.section`
 
 const SearchSection = () => {
   const [value, setValue] = useState('');
-  const breeds = useSelector((state: RootState) => state.breed.breeds);
-  const ids = useSelector((state: RootState) => state.breed.ids);
+  const { breedInfo } = useSelector((state: RootState) => state.breed);
   const dispatch = useDispatch();
   const onClick = () => {
     if (!value) {
       makeToast('no-value', '✏️', '검색어를 입력해주세요.');
       return;
     }
-    if (!breeds.includes(value.toLowerCase())) {
-      makeToast('no-breed', '😢', '검색어에 해당하는 고양이 종이 없습니다.');
-      return;
-    }
+    // if (!breeds.includes(value.toLowerCase())) {
+    //   makeToast('no-breed', '😢', '검색어에 해당하는 고양이 종이 없습니다.');
+    //   return;
+    // }
     setValue('');
     dispatch(loaderActions.startLoading());
-    api
-      .getSpecificCats(ids[breeds.indexOf(value.toLowerCase())])
-      .then((data) => {
-        dispatch(informationActions.update(data[0].breeds[0]));
-        dispatch(loaderActions.finishLoading());
-      });
+    // api
+    //   .getSpecificCats(ids[breeds.indexOf(value.toLowerCase())])
+    //   .then((data) => {
+    //     dispatch(informationActions.update(data[0].breeds[0]));
+    //     dispatch(loaderActions.finishLoading());
+    //   });
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

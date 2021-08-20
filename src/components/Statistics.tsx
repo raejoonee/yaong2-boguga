@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../store';

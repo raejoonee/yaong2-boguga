@@ -1,38 +1,40 @@
 import { useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
-import ColorContext from './contexts/Theme';
 import GlobalStyle from './styles/GlobalStyle';
+import ColorContext from './contexts/Theme';
 import { RootState } from './store';
-import { breedActions, BreedProps } from './features/breed/breedSlice';
+import { fetchBreeds } from './features/breed/breedSlice';
 import { loaderActions } from './features/loader/loaderSlice';
-import api from './api/TheCatAPI';
 import Title from './components/Title';
 import Directive from './components/Directive';
 import SearchSection from './components/SearchSection';
+import Information from './features/information/Information';
 import DarkMode from './components/DarkMode';
 import Loader from './features/loader/Loader';
-import Information from './features/information/Information';
 
 function App() {
   const { isLightTheme } = useContext(ColorContext);
-  const breeds = useSelector((state: RootState) => state.breed.breeds);
-  const loaded = useSelector((state: RootState) => state.information.loaded);
+  const { breedInfo } = useSelector((state: RootState) => state.breed);
+  const { loaded } = useSelector((state: RootState) => state.information);
   const { initialLoading } = useSelector((state: RootState) => state.loader);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!breeds.length) {
-      api.getBreeds().then((data) => {
-        data.forEach((breed: BreedProps) => {
-          const payload = {
-            breed: breed.name.toLowerCase(),
-            id: breed.id,
-          };
-          dispatch(breedActions.push(payload));
-        });
-        dispatch(loaderActions.finishLoading());
-      });
+    if (!breedInfo.length) {
+      dispatch(fetchBreeds());
+      dispatch(loaderActions.finishLoading());
+      // api.getBreeds().then((data) => {
+      //   data.forEach((breed: BreedProps) => {
+      //     const payload = {
+      //       breed: breed.name.toLowerCase(),
+      //       id: breed.id,
+      //     };
+      //     dispatch(breedActions.push(payload));
+      //   });
+      //   dispatch(loaderActions.finishLoading());
+      // });
     }
+    dispatch(fetchBreeds());
   }, []);
   return (
     <>
