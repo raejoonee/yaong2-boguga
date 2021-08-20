@@ -21,13 +21,13 @@ const BarKeyframe = (width: number) => keyframes`
     width: 10%;
   }
   to {
-    width: ${31 + 14 * width}%;
+    width: ${20 * width}%;
   }
 `;
 
 const Bar = styled.span<BarProps>`
-  background: ${(props) => props.color};
-  width: ${(props) => 31 + 14 * props.value}%;
+  background: ${(props) => (props.value ? props.color : null)};
+  width: ${(props) => 20 * props.value}%;
   border-radius: 40px;
   padding-left: 20px;
   overflow: hidden;
@@ -35,6 +35,12 @@ const Bar = styled.span<BarProps>`
   color: black;
   text-align: left;
   animation: 1s ${(props) => BarKeyframe(props.value)};
+`;
+
+const Stat = styled.span`
+  position: absolute;
+  padding-left: 20px;
+  z-index: 3;
 `;
 
 interface GraphProps {
@@ -46,9 +52,8 @@ interface GraphProps {
 const Graph = ({ title, value, color }: GraphProps) => {
   return (
     <Base>
-      <Bar value={value} color={color}>
-        {title}
-      </Bar>
+      <Bar value={value} color={color} />
+      <Stat>{title}</Stat>
     </Base>
   );
 };
