@@ -1,18 +1,19 @@
 import { useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
-import ColorContext from './contexts/Theme';
 import GlobalStyle from './styles/GlobalStyle';
+import ColorContext from './contexts/Theme';
 import { RootState } from './store';
 import { breedActions, BreedProps } from './features/breed/breedSlice';
 import { loaderActions } from './features/loader/loaderSlice';
 import api from './api/TheCatAPI';
 import Title from './components/Title';
 import Directive from './components/Directive';
-import SearchSection from './components/SearchSection';
+import Search from './components/Search';
+import Information from './features/information/Information';
+import Gallery from './components/Gallery';
 import DarkMode from './components/DarkMode';
 import Loader from './features/loader/Loader';
-import Information from './features/information/Information';
 
 function App() {
   const { isLightTheme } = useContext(ColorContext);
@@ -39,8 +40,9 @@ function App() {
       <GlobalStyle mode={isLightTheme} />
       {initialLoading || <Title />}
       {initialLoading || <Directive />}
-      {initialLoading || <SearchSection />}
+      {initialLoading || <Search />}
       {loaded && <Information />}
+      {loaded && <Gallery />}
       <DarkMode />
       <Loader />
       <Toaster
