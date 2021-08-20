@@ -10,13 +10,14 @@ import { loaderActions } from '../features/loader/loaderSlice';
 import api from '../api/TheCatAPI';
 import makeToast from '../utils/makeToast';
 import { informationActions } from '../features/information/informationSlice';
+import { imageActions } from '../features/image/imageSlice';
 
 const Section = styled.section`
   text-align: center;
   animation: 0.75s ${mount};
 `;
 
-const SearchSection = () => {
+const Search = () => {
   const [value, setValue] = useState('');
   const breeds = useSelector((state: RootState) => state.breed.breeds);
   const ids = useSelector((state: RootState) => state.breed.ids);
@@ -36,6 +37,10 @@ const SearchSection = () => {
       .getSpecificCats(ids[breeds.indexOf(value.toLowerCase())])
       .then((data) => {
         dispatch(informationActions.update(data[0].breeds[0]));
+        dispatch(imageActions.init());
+        data.forEach(({ url }: { url: string }) => {
+          dispatch(imageActions.push(url));
+        });
         dispatch(loaderActions.finishLoading());
       });
   };
@@ -61,4 +66,4 @@ const SearchSection = () => {
   );
 };
 
-export default React.memo(SearchSection);
+export default React.memo(Search);
