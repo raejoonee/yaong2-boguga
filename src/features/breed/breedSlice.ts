@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface BreedProps {
