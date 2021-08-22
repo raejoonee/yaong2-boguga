@@ -36,8 +36,10 @@
       }
     ],
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "react/react-in-jsx-scope": "off",
+    "camelcase": "off",
+    "no-param-reassign": "off",
     "no-use-before-define": "off",
+    "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off"

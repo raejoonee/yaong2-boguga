@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import ColorContext, { ThemeProps } from '../contexts/theme';
+import ColorContext, { ThemeProps } from '../contexts/Theme';
+import './DarkMode.scss';
 
 const Section = styled.div<ThemeProps>`
   position: fixed;
@@ -16,23 +17,25 @@ const Section = styled.div<ThemeProps>`
   cursor: pointer;
   transition: 0.5s;
   user-select: none;
+  z-index: 99;
+  background: ${(props) => (props.mode === 'light' ? '#fff' : '#333')};
   &:hover {
-    background: ${(props) => (props.mode ? '#333' : '#f2f2f2')};
-    color: ${(props) => (props.mode ? '#f2f2f2' : '#333')};
+    background: ${(props) => (props.mode === 'light' ? '#333' : '#f2f2f2')};
+    color: ${(props) => (props.mode === 'light' ? '#f2f2f2' : '#333')};
   }
 `;
 
-const DarkMode: React.FC = () => {
-  const { isLightTheme, toggleIsLightTheme } = useContext(ColorContext);
+const DarkMode = () => {
+  const { isLightTheme, toggleLightTheme } = useContext(ColorContext);
   return (
     <Section
-      mode={isLightTheme}
+      mode={isLightTheme.toString()}
       className="dark-mode-section"
       onClick={() => {
-        toggleIsLightTheme();
+        toggleLightTheme();
       }}
     >
-      다크 모드&nbsp;
+      다크 모드{' '}
       {isLightTheme ? (
         <span className="dark-mode-on" role="img" aria-label="dark-mode-on">
           🌙 설정
